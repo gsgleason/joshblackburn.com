@@ -1,5 +1,5 @@
 import datetime
-from sqlalchemy import create_engine, Column, String, Integer, Boolean, DateTime
+from sqlalchemy import create_engine, Column, String, Integer, Boolean, DateTime, UnicodeText
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
 import config
@@ -11,8 +11,8 @@ session = scoped_session(sessionmaker(expire_on_commit=False, autocommit=False, 
 class Event(Base):
 	__tablename__ = 'event'
 	id = Column(Integer, primary_key=True)
-	title = Column(String(length=255))
-	location = Column(String(length=255))
+	title = Column(UnicodeText)
+	location = Column(UnicodeText)
 	start = Column(DateTime)
 	end = Column(DateTime)
 	all_day = Column(Boolean)
@@ -23,10 +23,10 @@ class Event(Base):
 class Contact(Base):
 	__tablename__ = 'contact'
 	id = Column(Integer, primary_key=True)
-	name = Column(String)
-	email = Column(String)
-	message = Column(String)
-	ip = Column(String)
+	name = Column(UnicodeText)
+	email = Column(UnicodeText)
+	message = Column(UnicodeText)
+	ip = Column(UnicodeText)
 	utctime = Column(DateTime, default=datetime.datetime.utcnow)
 
 	def __repr__(self):
