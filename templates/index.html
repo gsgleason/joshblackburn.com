@@ -1,0 +1,29 @@
+{% set title = "Josh Blackburn Official" %}
+{% extends "base.html" %}
+{% block body %}
+
+{% if todayShows|length > 0 %}
+	<div class="container">
+	<h3>Today's shows</h3>
+	{% for event in todayShows %}
+		<p>
+		{{ event.time }}
+		{% if event.map_link %}
+			<a href="{{ event.map_link }}" target="_blank" title="Open in Maps">{{ event.title }}</a>
+		{% else %}
+			{{ event.title }}
+		{% endif %}
+		</p>
+	{% endfor %}
+	</div>
+{% endif %}
+
+<div class="container">
+	<h3>Dirty Bird (2015)</h3>
+	<img src="/static/img/dirty_bird.jpg" alt="dirty bird album art">
+</div>
+<div class="container">
+	<p>Dirty Bird - Fearless Productions (2015)</p>
+	{% include "dirty_bird_links.html" %}
+</div>
+{% endblock %}

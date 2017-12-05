@@ -1,0 +1,55 @@
+{% set title = "Josh Blackburn Albums" %}
+{% extends "base.html" %}
+{% block body %}
+{% include "audio_controls.html" %}
+<div class="container">
+<p>This page will allow you to stream Josh's music free as much as you want!  To save bandwidth, all of these tracks are compressed pretty heavily.  To get the full quality of Josh's music, please buy an album!</p>
+<p>Digital downloads are available through <a href="http://www.cdbaby.com/Artist/JoshBlackburn" target="_blank">CD Baby</a>, <a href="https://itunes.apple.com/us/artist/josh-blackburn/id395770278" target="_blank">iTunes</a>, <a href="http://www.amazon.com/s/ref=ntt_srch_drd_B0045AJ0K2?ie=UTF8&amp;field-keywords=Josh%20Blackburn&amp;index=digital-music&amp;search-type=ss" target="_blank">Amazon</a>, and many more!</p>
+</div>
+
+{% for album in album_list %}
+	{% set a = loop.revindex0 %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+				<h3>{{ album.title }} ({{ album.year }})</h3>
+				<ol>
+					{% for track in album.tracks %}
+						<li><a data-album="{{ a }}" data-track="{{ loop.index0 }}"></a> {{ loop.index }}. {{ track }}</li>
+					{% endfor %}
+				</ol>
+			</div>
+			<div class="hidden-xs col-sm-6 col-md-4">
+				<img src="/static/img/{{ album.art }}.jpg" alt="{{ album.title }} album art">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8">
+				{{ album.blurb|safe }}
+			</div>
+		</div>
+		{% if album.title == "Dirty Bird" %}
+		<div class="row">
+			<div class="col-xs-8">
+				{% include "dirty_bird_links.html" %}
+			</div>
+		</div>
+		{% endif %}
+		{% if album.title == "Purple Elephant" %}
+		<div class="row">
+			<div class="col-xs-8">
+				{% include "purple_elephant_links.html" %}
+			</div>
+		</div>
+		{% endif %}
+		{% if album.title == "Flipside" %}
+		<div class="row">
+			<div class="col-xs-8">
+				{% include "flipside_links.html" %}
+			</div>
+		</div>
+		{% endif %}
+	</div>
+{% endfor %}
+<script src="/albums.js" defer></script>
+{% endblock %}

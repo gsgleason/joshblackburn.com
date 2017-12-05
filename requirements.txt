@@ -1,0 +1,7 @@
+Flask
+sqlalchemy
+requests
+pytz
+iso8601
+ics
+pymysql

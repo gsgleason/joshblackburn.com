@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+<h4>Something went wrong.</h4>
+{% for error in errors %}
+	<p>{{ error }}</p>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% set title = "Josh Blackburn Showtimes" %}
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+<h3>Upcoming Events</h3>
+<div class="table-responsive">
+<table class="table">
+<tr>
+	<th>Date</th>
+	<th>Time</th>
+	<th>Location</th>
+	<th></th>
+</tr>
+{% for event in events %}
+<tr>
+	<td>{{ event.date }}</td>
+	<td>{{ event.time }}</td>
+	<td>
+		{% if event.map_link %}
+			<a href="{{ event.map_link }}" target="_blank" title="Open in Maps">{{ event.title }}</a>
+		{% else %}
+			{{ event.title }}
+		{% endif %}
+	</td>
+	<td><a href="{{ event.cal_link }}" target="_blank" class="material-icons" title="Add to Calendar">event</a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+</div>
+{% endblock %}

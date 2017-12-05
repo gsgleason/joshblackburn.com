@@ -1,0 +1,29 @@
+{% set title = "Josh Blackburn Messages" %}
+{% set title = "Contact Form Messages" %}
+{% extends "base.html" %}
+{% block body %}
+{% for item in items %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-2">Date:</div>
+			<div class="col-xs-10">{{ item.localtime }}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2">IP:</div>
+			<div class="col-xs-10">{{ item.ip }}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2">Name:</div>
+			<div class="col-xs-10">{{ item.name }}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2">Email:</div>
+			<div class="col-xs-10">{{ item.email }}</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2">Message:</div>
+			<div class="col-xs-10">{{ item.message }}</div>
+		</div>
+	</div>
+{% endfor %}
+{% endblock %}
