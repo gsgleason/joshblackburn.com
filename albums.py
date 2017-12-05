@@ -2,7 +2,7 @@ from app import app
 from flask import render_template, session, abort, Response
 import os
 import config
-data_dir = config.audio.data_dir
+audio_dir = config.audio.dir
 
 import string
 import random
@@ -78,7 +78,7 @@ def albums_js():
 def getfile(fmt,album,track):
 	if session.get('key') is None:
 		abort(404)
-	fileName = os.path.join(data_dir,"audio",fmt,album,track)
+	fileName = os.path.join(audio_dir,"audio",fmt,album,track)
 	with open(fileName, mode='rb') as file:
 		fileContent = file.read()
 	if fmt == "mp3":
