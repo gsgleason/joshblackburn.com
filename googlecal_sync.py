@@ -51,3 +51,4 @@ if r.status_code == 200:
 		session.add(event)
 	
 	session.commit()
+	session.close()

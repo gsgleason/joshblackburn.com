@@ -40,6 +40,7 @@ def contact():
 		contact.ip = ip
 		session.add(contact)
 		session.commit()
+		session.close()
 
 		date = datetime.datetime.now(timezone('US/Mountain')).strftime('%Y-%m-%d %I:%M:%S %p')
 		msg = MIMEText("Date/Time: {}\nName: {}\nEmail: {}\n\n{}".format(date,contact.name,contact.email,contact.message))

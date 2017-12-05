@@ -65,5 +65,6 @@ def get_events():
 			event.cal_link = event.gcal_link
 			event.map_link = event.gmap_link
 		events.append(event)
+	session.close()
 	return events
 

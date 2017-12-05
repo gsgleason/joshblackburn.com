@@ -41,6 +41,7 @@ def messages():
 			localtz = pytz.timezone('America/Denver')
 			item.localtime = utc.localize(item.utctime).astimezone(localtz)
 			items.append(item)
+		session.close()
 		return render_template('messages.html', items=items)
 	else:
 		site_key = config.reCaptcha.site_key
