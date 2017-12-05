@@ -15,7 +15,7 @@ def contact():
 	if request.method == 'POST':
 		g_recaptcha_response = request.form.get('g-recaptcha-response')
 		secret = config.reCaptcha.secret
-		url = config.reCaptcha.url
+		url = config.reCaptcha.uri
 		if request.headers.getlist("X-Forwarded-For"):
 			ip = request.headers.getlist("X-Forwarded-For")[0]
 		else:
