@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 import config
 
 Base = declarative_base()
-engine = create_engine(config.db.uri, convert_unicode=True, pool_recycle=280)
+engine = create_engine(config.db.uri, encoding='utf-8', convert_unicode=True, pool_recycle=280)
 session = scoped_session(sessionmaker(expire_on_commit=False, autocommit=False, autoflush=False, bind=engine))
 
 class Event(Base):
