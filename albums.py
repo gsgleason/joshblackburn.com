@@ -59,6 +59,15 @@ album.art = "dirty_bird"
 album.blurb = ''
 album_list.append(album)
 
+album  =  Album()
+album.title = "Straight & Narrow"
+album.artist = "Josh Blackburn"
+album.year = "2021"
+album.tracks = ["Straight & Narrow", "Load You Bear", "Remember I Said", "Always Be Me", "What Would You Think", "My Way", "Headlines", "Hurt On Me", "Fall Blues", "Please Believe Me", "I'll Play The Blues for You", "The Ship"]
+album.art = "straight_and_narrow"
+album.blurb = '<p></p>'
+album_list.append(album)
+
 import json
 album_json = json.dumps(album_list, default=lambda o: o.__dict__)
 
