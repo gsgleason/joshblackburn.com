@@ -5,4 +5,3 @@ pytz
 iso8601
 ics
 pymysql
-Flask-SSLify
