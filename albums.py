@@ -1,13 +1,5 @@
 from app import app
-from flask import render_template, session, abort, Response
-import os
-import config
-audio_dir = config.audio.dir
-
-import string
-import random
-def key_gen(size=8, chars=string.ascii_lowercase + string.digits):
-	return ''.join(random.choice(chars) for _ in range(size))
+from flask import render_template 
 
 class Album(object):
 	pass
@@ -78,32 +70,9 @@ album.spotify_id = '3pWpf4o6XGgpHhOw5gGdN0'
 album.spotify_height = len(album.tracks) * 31 + 80
 album_list.append(album)
 
-import json
-album_json = json.dumps(album_list, default=lambda o: o.__dict__)
-
 album_list = list(reversed(album_list))
 
 @app.route('/albums', methods = ['GET'])
 def albums():
-	if 'key' not in session:
-		session['key'] = key_gen()
 	return render_template('albums.html', album_list=album_list)
 
-@app.route('/albums.js')
-def albums_js():
-	return render_template('albums.js', album_json=album_json)
-
-@app.route('/audio/<fmt>/<album>/<track>')
-def getfile(fmt,album,track):
-	if session.get('key') is None:
-		abort(404)
-	fileName = os.path.join(audio_dir,fmt,album,track)
-	with open(fileName, mode='rb') as file:
-		fileContent = file.read()
-	if fmt == "mp3":
-		mime = "audio/mpeg"
-	if fmt == "ogg":
-		mime = "audio/ogg"
-	resp = Response(fileContent, mimetype=mime)
-	resp.headers['Content-Disposition'] = 'attachment'
-	return resp
