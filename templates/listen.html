@@ -1,0 +1,21 @@
+{% set title = "Listen to Josh Blackburn" %}
+{% extends "base.html" %}
+{% block body %}
+
+{% for album in album_list %}
+    {% if album.spotify_id is defined %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+				<h3>{{ album.title }} ({{ album.year }})</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+                <iframe src="https://open.spotify.com/embed/album/{{ album.spotify_id }}?theme=0" width="100%" height="{{ album.spotify_height }}" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+			</div>
+		</div>
+	</div>
+    {% endif %}
+{% endfor %}
+{% endblock %}
