@@ -56,7 +56,7 @@ def get_events():
 		e.begin = start
 		e.end = end
 		e.location = data['location']
-		c.events.append(e)
+		c.events.add(e)
 		event.ics_link = "data:text/calendar,{}".format(quote(str(c)))
 		if iOS:
 			event.cal_link = event.ics_link
